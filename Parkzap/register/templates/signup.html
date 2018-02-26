@@ -1,0 +1,118 @@
+
+  {% include 'base.html' %}
+{% load static %}
+<head>
+        <meta charset="utf-8">
+        <title>Create Account</title>
+
+    </head>
+
+    <body class=" ">
+        <a id="start"></a>
+        <div class="main-container">
+            <section class="imageblock switchable feature-large height-100">
+                <div class="imageblock__content col-md-6 col-sm-4 pos-right">
+                    <div class="background-image-holder">
+                        <img alt="image" src="{% static "img/inner-6.jpg"%}" />
+                    </div>
+                </div>
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-7">
+                            <h2>Create a Yuza Pro Account</h2>
+                            <p class="lead">Get started with yuza pro ,a free service to all</p>
+                            <form  method="post" action="{% url 'signup' %}" enctype="multipart/form-data">{% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                         <input id="name" type="text" name="name" placeholder="Username"  required>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input id="mobile" type="email"  name="email" placeholder="Email" required>
+                                    </div>
+                                     <div class="col-xs-12">
+                                        <input id="company" type="password" name="password" id="password" placeholder="Password"  required>
+                                    </div>
+
+
+                                <div  class="col-xs-12">
+                                  <input type="date" placeholder="Date of birth" name="dob" id="dob" min="1960-04-01" max="2000-01-01" required>
+                                  </div>
+                                     <div class="col-xs-12">
+                                        <button type="submit"  name="register" class="btn btn--primary type--uppercase" >Register Account</button>
+                                    </div>
+                                    <div class="col-xs-12">
+                                         <span class="type--fine-print block">All ready have an account ?
+                                            <a href="{% url 'signin' %}">Login Here..</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                         {% if validation_msg  %}
+                                         {% for error in validation_error %}
+                                           <p style="color: red">{{ error }}</p>
+
+                                         {% endfor %}
+                                    {% endif %}
+                                    </div>
+                                </div>
+                                <!--end row-->
+                            </form>
+
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+        <!--<div class="loader"></div>-->
+        <script src="{% static "js/flickity.min.js"%}"></script>
+        <script src="{% static "js/easypiechart.min.js"%}"></script>
+        <script src="{% static "js/parallax.js"%}"></script>
+        <script src="{% static "js/typed.min.js"%}"></script>
+        <script src="{% static "js/datepicker.js"%}"></script>
+        <script src="{% static "js/isotope.min.js"%}"></script>
+        <script src="{% static "js/ytplayer.min.js"%}"></script>
+        <script src="{% static "js/granim.min.js"%}"></script>
+        <script src="{% static "js/jquery.steps.min.js"%}"></script>
+        <script src="{% static "js/countdown.min.js"%}"></script>
+        <script src="{% static "js/twitterfetcher.min.js"%}"></script>
+        <script src="{% static "js/spectragram.min.js"%}"></script>
+        <script src="{% static "js/smooth-scroll.min.js"%}"></script>
+        <script src="{% static "js/scripts.js"%}"></script>
+         <script type="text/javascript">
+            setTimeout(function() {
+                $("#message-wrapper").remove();
+            }, 400)
+        </script>
+        <!--disabled previous page after signup-->
+   <!-- <script>
+    $(document).ready(function() {
+        function disableBack()
+        {
+
+               window.history.forward()
+
+
+        }
+
+        window.onload = disableBack();
+        window.onpageshow = function(evt)
+        {
+            if (evt.persisted)
+                disableBack()
+        }
+    });
+</script>
+    !-->
+
+    </body>
+
+
+</html>
+
+
+
+
+
+
+
