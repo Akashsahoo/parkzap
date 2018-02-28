@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect,HttpResponse
 from .models import User
 from django.core.mail import send_mail
 from django.contrib.auth import settings
+from datetime import datetime,timedelta
+
 
 
 def signup(request):
@@ -11,7 +13,13 @@ def signup(request):
         dob=request.POST['dob']
         email=request.POST['email']
         password=request.POST['password']
-
+        dob=dob.split('/')
+        dob=[int(i) for i in dob]
+        dob_year_date_swap=dob[0]
+        dob[0]=dob[1]
+        dob[1]=dob_year_date_swap
+        dob.reverse()
+        dob=datetime(*dob).strftime("%Y-%m-%d")
 
         if (User.objects.filter(email=email).exists()):
             return HttpResponse("user already exists")
@@ -25,7 +33,7 @@ def signup(request):
 
 
     else:
-        return render(request,'signup.html')
+        return render(request,'signup.html',{'maxdate':(datetime.now() - timedelta(days=18*365)).strftime("%Y-%m-%d")})
 
 def signin(request):
     if request.method=='POST':
